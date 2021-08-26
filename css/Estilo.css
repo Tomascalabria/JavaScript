@@ -226,8 +226,9 @@ a.link-two.link:hover {
 
 /* formulario */
 .container {
-  max-width: 200px;
-  margin: 20px auto; }
+  max-width: 300px;
+  margin: 20px auto;
+  max-height: 100%; }
 
 .form-h2 {
   width: 100%;
@@ -235,14 +236,14 @@ a.link-two.link:hover {
   padding: 0;
   color: rgba(255, 255, 255, 0.2); }
 
-a {
+.a-formulario {
   font-family: sans-serif;
   font-size: 1.6rem;
   text-decoration: none;
   font-weight: 900;
   color: #ecf0f1; }
 
-a:hover {
+.a-formulario:hover {
   color: #bdc3c7; }
 
 .form {
@@ -250,7 +251,8 @@ a:hover {
   background-color: #4b4dc4;
   text-align: center;
   padding: 1.25em;
-  border-radius: 5px; }
+  border-radius: 5px;
+  height: 100%; }
 
 .input {
   margin: 0 0 .4em 0;

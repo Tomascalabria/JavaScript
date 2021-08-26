@@ -40,6 +40,7 @@ function realizarTransferencia(e){  // borrar el banner de opciones y generar el
 
     let aFormulario =document.createElement('a')
     aFormulario.textContent="Transferencias"
+    aFormulario.setAttribute('class','a-formulario')
     h2Formulario.appendChild(aFormulario)
 
     let divFormulario = document.createElement('form')
@@ -49,43 +50,63 @@ function realizarTransferencia(e){  // borrar el banner de opciones y generar el
     let inputUsuario = document.createElement('input')
     inputUsuario.setAttribute('type','text')
     inputUsuario.setAttribute('class','input')
-    inputUsuario.setAttribute('value','username')
-    inputUsuario.setAttribute('placeholder','usuario' )
+    inputUsuario.setAttribute('placeholder','usuario')
     divFormulario.appendChild(inputUsuario)
 
-    let inputContraseña=document.createElement('input')
-    inputContraseña.setAttribute('type','text')
-    inputContraseña.setAttribute('class','input')
-    inputContraseña.setAttribute('placeholder','contraseña' )
-    inputContraseña.setAttribute('value','usuario')
-    divFormulario.appendChild(inputContraseña)
+    let inputMonto=document.createElement('input')
+    inputMonto.setAttribute('type','number')
+    inputMonto.setAttribute('class','input')
+    inputMonto.setAttribute('placeholder','Monto a transferir' )
+    divFormulario.appendChild(inputMonto)
+
+    let divOpciones =document.createElement('div')
+    divOpciones.setAttribute('class','form-group')
+    divFormulario.appendChild(divOpciones)
+
+    let labelFormulario=document.createElement('div')
+    labelFormulario.setAttribute('for','motivo')
+    labelFormulario.textContent=('Elija un motivo de transferencia')
+    divOpciones.appendChild(labelFormulario)
+
+    let selectFormulario =document.createElement('select')
+    selectFormulario.setAttribute('id','form_motivo')
+    selectFormulario.setAttribute('name','motivo')
+    selectFormulario.setAttribute('class','form_motivo')
+    selectFormulario.setAttribute('required','required')
+    selectFormulario.setAttribute('data-error','Especifique el motivo ')
+    divOpciones.appendChild(selectFormulario)
+    
+    let opcionesLabel=document.createElement('option')
+    opcionesLabel.setAttribute('id',"")
+    opcionesLabel.setAttribute('selected','disabled')
+    opcionesLabel.textContent='--Seleccione motivo --'
+    selectFormulario.appendChild(opcionesLabel)
+
+    let opciones2=document.createElement('option')
+    opciones2.setAttribute('id',"option")
+    opciones2.textContent="Haberes"
+    selectFormulario.appendChild(opciones2)
+
+    let opciones3=document.createElement('option')
+    opciones3.setAttribute('id',"option")
+    opciones3.textContent="Honorarios"
+    selectFormulario.appendChild(opciones3)
+
+    let opciones4=document.createElement('option')
+    opciones4.setAttribute('id',"option")
+    opciones4.textContent="Gastos"
+    selectFormulario.appendChild(opciones4)
+
+    let inputSubmit =document.createElement('input')
+    inputSubmit.setAttribute('type','submit')
+    inputSubmit.setAttribute('value','Transferir' )
+    divFormulario.appendChild(inputSubmit)
+
+
     
 
-    
 
-
-    document.createElement(`<div class='container'>
-    <h2> <a href='#'> Transferencia</a></h2>
-    <div class='form'>
-      <input type="text" value="username" />
-      <input type='text' value='auth code' />
-      
-      <input type='text' value='password' />
-                                          <div  class="form-group"> <label for="motivo">Elija un motivo de transferencia</label> <select id="form_motivo" name="motivo" class="form-motivo" required="required" data-error="Especifique el motivo  ">
-                                                  <option value="" selected disabled>--Seleccione motivo --</option>
-                                                  <option id="option  "> varios </option>
-                                                  <option id="option"> Expensas</option>
-                                                  <option id="option">haberes</option>
-                                                  <option id="option">Honorarios</option>
-                                                  <option id="option">  Gastos </option>
-                                              </select> </div>
-                                      </div>
-                                  </div>
-      <input type='submit' value='sign up'/>
-    </div>
-    
-  <div>`)
-
+  
     // let operacionSaldo1=document.createElement('p')
     // operacionSaldo1.setAttribute('class','operacion-saldo-1')
     // operacionSaldo1.textContent="Su saldo es:"
