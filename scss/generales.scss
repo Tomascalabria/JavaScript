@@ -1,0 +1,26 @@
+@charset "UTF-8";
+:root {
+    --fuente1:'Press Start 2P', cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  scroll-behavior: smooth; }
+
+html {
+  font-size: 62.5%; 
+background-color: black;}
+
+p {
+  font-size: 1rem; }
+
+h1 {
+  font-size: 2.4rem; }
+
+h2 {
+  font-size: 2.2rem; }
+
+h3 {
+  font-size: 2rem; }
