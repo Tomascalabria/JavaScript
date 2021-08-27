@@ -1,7 +1,6 @@
 
 
 
-
 function Usuario (id,nombre,contraseña,saldo){
     this.id=parseInt(id);
     this.nombre=nombre;
@@ -17,7 +16,7 @@ let usuarios = []
 
 
 
-    usuarios.push(new Usuario(1,'pedro',65487841,50000))
+    usuarios.push(new Usuario(1,'pedro',65487841,78900))
 
 
 
@@ -139,19 +138,27 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
 
 
 
+
+
     function transferir (){
         let transferencia= restar(dato.saldo ,inputMonto.value) 
-        alert(`ud ha transferido ${inputMonto.value}, su saldo restante es ${transferencia}`)
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            width: 600,
+            height: 600,
+            title: (`ud ha transferido ${inputMonto.value}, su saldo restante es ${transferencia}`),
+            showConfirmButton: false,
+            timer: 6000
+          })
         
-                console.log(transferencia)
+       
               
+                     
         }
         
-
-
     });
 }
-
 function restar(a,b){
     let resta = a-b
    return resta

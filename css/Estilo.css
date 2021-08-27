@@ -269,10 +269,22 @@ a.link-two.link:hover {
 [type='text'] {
   padding-left: 1em; }
 
+select#form_motivo {
+  background: #4b4dc4;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  border-style: solid;
+  border-color: black;
+  margin-top: 1rem;
+  color: white; }
+
 [type='submit'] {
   color: white;
-  background-color: #2980b9;
-  font-weight: 600; }
+  font-weight: 600;
+  width: 100%;
+  border-radius: 10%;
+  margin-top: 2rem;
+  padding: 1rem; }
 
 .input:focus {
   border: 0;
