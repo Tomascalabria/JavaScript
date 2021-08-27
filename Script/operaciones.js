@@ -16,12 +16,12 @@ let usuarios = []
 
 
 
-    usuarios.push(new Usuario(1,'pedro',65487841,78900))
+     usuarios.push(new Usuario(1,'pedro',65487841,78900))
 
 
 
 
-
+let titloH2 = document.querySelector('.title')
 let bannerTransferencias = document.querySelector('.link-two')
 let bannerDepositos = document.querySelector('.link-three')
 let bannerSaldo = document.querySelector('.link-one ')
@@ -32,7 +32,15 @@ let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
 function consultaSaldo (e){
     usuarios.forEach((dato)=>{
     e.preventDefault();
+
+
     contenedorBanners.remove()
+    titloH2.remove()
+    let h2Saldo= document.createElement('h2')
+    h2Saldo.setAttribute('class','title')
+    h2Saldo.textContent='CONSULTA SALDO'
+    document.querySelector('header').appendChild(h2Saldo)
+
     let contenedorOperacionSaldo =document.createElement('div')
     contenedorOperacionSaldo.setAttribute('class','contenedor-saldo')
     contenedorOperaciones.appendChild(contenedorOperacionSaldo)
@@ -44,7 +52,7 @@ function consultaSaldo (e){
 
     let operacionSaldo2=document.createElement('p')
     operacionSaldo2.setAttribute('class','operacion-saldo-2')
-    operacionSaldo2.textContent=  ( `${dato.saldo} Pesos`);
+    operacionSaldo2.textContent=  ( `${localStorage.getItem("saldo")} Pesos`);
     // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
     operacionSaldo1.appendChild(operacionSaldo2)
     });
@@ -56,6 +64,12 @@ function consultaSaldo (e){
 function menuTransferencia(){  // borrar el banner de opciones y generar el formulario
     usuarios.forEach((dato)=>{
     contenedorBanners.remove()
+    titloH2.remove()
+    let h2Transferencia= document.createElement('h2')
+    h2Transferencia.setAttribute('class','title')
+    h2Transferencia.textContent='Realizar Transferencia'
+    document.querySelector('header').appendChild(h2Transferencia)
+
     let contenedorOperacionTransferencia =document.createElement('div')
     contenedorOperacionTransferencia.setAttribute('class','contenedor-transferencia')
     contenedorOperaciones.appendChild(contenedorOperacionTransferencia)
@@ -140,28 +154,58 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
 
 
 
-    function transferir (){
-        let transferencia= restar(dato.saldo ,inputMonto.value) 
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            width: 600,
-            height: 600,
-            title: (`ud ha transferido ${inputMonto.value}, su saldo restante es ${transferencia}`),
-            showConfirmButton: false,
-            timer: 6000
-          })
-        
+    function transferir (e){
+      
+        e.preventDefault()
+      
+        localStorage.setItem("saldo", dato.saldo= restar(dato.saldo ,inputMonto.value));
        
-              
-                     
-        }
+    
+        if (restar(dato.saldo,inputMonto.value)<0);{     
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Fondos insuficientes!',
+                
+              })
+
+            }
+                 
+             
+  
+        if (inputMonto == null || inputMonto== NaN || inputMonto=="") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El monto a transferir esta en blanco!',
+                
+              })
+                  
+                         
+         }
         
+            
+    else( inputMonto==Number);{
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                width: 600,
+                height: 600,
+                title: (`ud ha transferido ${inputMonto.value}, su saldo restante es ${dato.saldo}`),
+                showConfirmButton: false,
+                timer: 6000
+              })
+            }
+    
+    
+    }
     });
+    
 }
+
 function restar(a,b){
-    let resta = a-b
-   return resta
+    let x = a-b
+   return x
 }
 
 
