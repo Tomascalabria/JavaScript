@@ -1,9 +1,37 @@
+
+
+
+
+function Usuario (id,nombre,contraseña,saldo){
+    this.id=parseInt(id);
+    this.nombre=nombre;
+    this.contraseña=contraseña;
+    this.saldo=parseFloat(saldo)
+}
+
+
+
+
+
+let usuarios = [] 
+
+
+
+    usuarios.push(new Usuario(1,'pedro',65487841,50000))
+
+
+
+
+
 let bannerTransferencias = document.querySelector('.link-two')
 let bannerDepositos = document.querySelector('.link-three')
 let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
+
+
 function consultaSaldo (e){
+    usuarios.forEach((dato)=>{
     e.preventDefault();
     contenedorBanners.remove()
     let contenedorOperacionSaldo =document.createElement('div')
@@ -17,14 +45,17 @@ function consultaSaldo (e){
 
     let operacionSaldo2=document.createElement('p')
     operacionSaldo2.setAttribute('class','operacion-saldo-2')
-    operacionSaldo2.textContent=  ( "2000 pesos");
+    operacionSaldo2.textContent=  ( `${dato.saldo} Pesos`);
     // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
     operacionSaldo1.appendChild(operacionSaldo2)
+    });
     }
-bannerSaldo.addEventListener('click',consultaSaldo);
 
-function realizarTransferencia(e){  // borrar el banner de opciones y generar el formulario
-    e.preventDefault();
+   
+
+       
+function menuTransferencia(){  // borrar el banner de opciones y generar el formulario
+    usuarios.forEach((dato)=>{
     contenedorBanners.remove()
     let contenedorOperacionTransferencia =document.createElement('div')
     contenedorOperacionTransferencia.setAttribute('class','contenedor-transferencia')
@@ -33,6 +64,7 @@ function realizarTransferencia(e){  // borrar el banner de opciones y generar el
     let formContainer = document.createElement('div')
     formContainer.setAttribute('class','container')
     contenedorOperacionTransferencia.appendChild(formContainer)
+    formContainer.addEventListener('submit',transferir)
 
     let h2Formulario =document.createElement('h2')
     h2Formulario.setAttribute('class','form-h2')
@@ -47,6 +79,7 @@ function realizarTransferencia(e){  // borrar el banner de opciones y generar el
     divFormulario.setAttribute('class','form')
     formContainer.appendChild(divFormulario)
 
+
     let inputUsuario = document.createElement('input')
     inputUsuario.setAttribute('type','text')
     inputUsuario.setAttribute('class','input')
@@ -55,7 +88,8 @@ function realizarTransferencia(e){  // borrar el banner de opciones y generar el
 
     let inputMonto=document.createElement('input')
     inputMonto.setAttribute('type','number')
-    inputMonto.setAttribute('class','input')
+    inputMonto.setAttribute('class','input input-monto')
+
     inputMonto.setAttribute('placeholder','Monto a transferir' )
     divFormulario.appendChild(inputMonto)
 
@@ -97,27 +131,35 @@ function realizarTransferencia(e){  // borrar el banner de opciones y generar el
     opciones4.textContent="Gastos"
     selectFormulario.appendChild(opciones4)
 
+
     let inputSubmit =document.createElement('input')
     inputSubmit.setAttribute('type','submit')
     inputSubmit.setAttribute('value','Transferir' )
     divFormulario.appendChild(inputSubmit)
 
 
-    
+
+    function transferir (){
+        let transferencia= restar(dato.saldo ,inputMonto.value) 
+        alert(`ud ha transferido ${inputMonto.value}, su saldo restante es ${transferencia}`)
+        
+                console.log(transferencia)
+              
+        }
+        
 
 
-  
-    // let operacionSaldo1=document.createElement('p')
-    // operacionSaldo1.setAttribute('class','operacion-saldo-1')
-    // operacionSaldo1.textContent="Su saldo es:"
-    // contenedorOperacionSaldo.appendChild(operacionSaldo1)
-
-    // let operacionSaldo2=document.createElement('p')
-    // operacionSaldo2.setAttribute('class','operacion-saldo-2')
-    // operacionSaldo2.textContent=  ( "2000 pesos");
-    // // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
-    // operacionSaldo1.appendChild(operacionSaldo2)
+    });
 }
-bannerTransferencias.addEventListener('click',realizarTransferencia)
+
+function restar(a,b){
+    let resta = a-b
+   return resta
+}
 
 
+
+    bannerTransferencias.addEventListener('click',menuTransferencia);
+    bannerSaldo.addEventListener('click',consultaSaldo);
+
+    
