@@ -1,39 +1,23 @@
-
-
-
 function Usuario (id,nombre,contraseña,saldo){
     this.id=parseInt(id);
     this.nombre=nombre;
     this.contraseña=contraseña;
     this.saldo=parseFloat(saldo)
 }
-
-
-
-
-
 let usuarios = [] 
 
-
-
-     usuarios.push(new Usuario(1,'pedro',65487841,78900))
-
-
-
-
+usuarios.push(new Usuario(1,'pedro',65487841,78900))
+    
 let titloH2 = document.querySelector('.title')
 let bannerTransferencias = document.querySelector('.link-two')
 let bannerDepositos = document.querySelector('.link-three')
 let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
-
-
 function consultaSaldo (e){
     usuarios.forEach((dato)=>{
     e.preventDefault();
-
-
+    
     contenedorBanners.remove()
     titloH2.remove()
     let h2Saldo= document.createElement('h2')
@@ -57,10 +41,6 @@ function consultaSaldo (e){
     operacionSaldo1.appendChild(operacionSaldo2)
     });
     }
-
-   
-
-       
 function menuTransferencia(){  // borrar el banner de opciones y generar el formulario
     usuarios.forEach((dato)=>{
     contenedorBanners.remove()
@@ -78,6 +58,7 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
     formContainer.setAttribute('class','container')
     contenedorOperacionTransferencia.appendChild(formContainer)
     formContainer.addEventListener('submit',transferir)
+    formContainer.addEventListener('submit',validarTransferencia)
 
     let h2Formulario =document.createElement('h2')
     h2Formulario.setAttribute('class','form-h2')
@@ -92,11 +73,11 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
     divFormulario.setAttribute('class','form')
     formContainer.appendChild(divFormulario)
 
-
+// Palabra clave para realizar la diferencia
     let inputUsuario = document.createElement('input')
     inputUsuario.setAttribute('type','text')
     inputUsuario.setAttribute('class','input')
-    inputUsuario.setAttribute('placeholder','usuario')
+    inputUsuario.setAttribute('placeholder','Palabra Clave')
     divFormulario.appendChild(inputUsuario)
 
     let inputMonto=document.createElement('input')
@@ -151,54 +132,52 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
     divFormulario.appendChild(inputSubmit)
 
 
+    function validarTransferencia(e){
+        e.preventDefault();
 
 
-
-    function transferir (e){
-      
-        e.preventDefault()
-      
-        localStorage.setItem("saldo", dato.saldo= restar(dato.saldo ,inputMonto.value));
-       
-    
-        if (restar(dato.saldo,inputMonto.value)<0);{     
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Fondos insuficientes!',
-                
-              })
-
-            }
-                 
-             
-  
-        if (inputMonto == null || inputMonto== NaN || inputMonto=="") {
+        if (inputMonto == null || inputMonto== NaN || inputMonto==" ") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'El monto a transferir esta en blanco!',
                 
               })
-                  
-                         
+         
          }
         
-            
-    else( inputMonto==Number);{
+    
+         else if (localStorage.getItem('saldo')<=0);{     
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingrese un numero!',
+                
+              })
+    }
+    }
+    function transferir (e){
+      
+        e.preventDefault()
+
+       localStorage.getItem('saldo')
+
+        localStorage.setItem("saldo", dato.saldo= restar(dato.saldo ,inputMonto.value));
+       
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 width: 600,
                 height: 600,
-                title: (`ud ha transferido ${inputMonto.value}, su saldo restante es ${dato.saldo}`),
+                title: (`Gracias ${usuarios.nombre} ha transferido ${inputMonto.value}, su saldo restante es ${dato.saldo}`),
                 showConfirmButton: false,
                 timer: 6000
               })
-            }
-    
+            
     
     }
+
     });
     
 }
@@ -207,9 +186,6 @@ function restar(a,b){
     let x = a-b
    return x
 }
-
-
-
     bannerTransferencias.addEventListener('click',menuTransferencia);
     bannerSaldo.addEventListener('click',consultaSaldo);
 

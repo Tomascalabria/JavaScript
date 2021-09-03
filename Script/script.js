@@ -8,7 +8,7 @@ function Usuario (id,nombre,contraseña,saldo){
 }
 
 
-
+let usuarios = []
 
 let div2 = document.querySelector('div-2y')
 let formulario=document.querySelector('.login-form');
@@ -17,20 +17,18 @@ function validarformulario(e){
     e.preventDefault()
 let userName = document.querySelector('.login-username').value
 let userPassword = document.querySelector('.login-password').value
-
-let usuarios = [] 
-
-
-// usuarios.push(new Usuario(1,userName,userPassword,50000))
-// window.localStorage.setItem('usuario',JSON.stringify(usuarios))
+ 
 
 
-// localStorage.setItem("usuarios", JSON.stringify(usuarios));
+usuarios.push(new Usuario(1,userName,userPassword,50000))
+window.localStorage.setItem('usuario',JSON.stringify(usuarios))
 
-// var datos = localStorage.getItem('usuarios')
 
-// console.log(datos)
-// console.log(usuarios);
+
+var datos = localStorage.getItem('usuarios')
+
+console.log(datos)
+console.log(usuarios);
 
 
 
