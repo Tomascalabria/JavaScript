@@ -14,12 +14,14 @@ let bannerDepositos = document.querySelector('.link-three')
 let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
+let saldo = localStorage.getItem('saldo')
 function consultaSaldo (e){
     usuarios.forEach((dato)=>{
     e.preventDefault();
     
     contenedorBanners.remove()
     titloH2.remove()
+    
     let h2Saldo= document.createElement('h2')
     h2Saldo.setAttribute('class','title')
     h2Saldo.textContent='CONSULTA SALDO'
@@ -36,9 +38,17 @@ function consultaSaldo (e){
 
     let operacionSaldo2=document.createElement('p')
     operacionSaldo2.setAttribute('class','operacion-saldo-2')
+    if (saldo<0){
+        operacionSaldo2.textContent= 'Error, no tiene fondos en su cuentas'
+    }
+    else if (saldo>=0){
     operacionSaldo2.textContent=  ( `${localStorage.getItem("saldo")} Pesos`);
+    }
     // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
     operacionSaldo1.appendChild(operacionSaldo2)
+    
+    
+
     });
     }
 function menuTransferencia(){  // borrar el banner de opciones y generar el formulario
@@ -134,7 +144,18 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
 
     function validarTransferencia(e){
         e.preventDefault();
-
+        while (dato.saldo<0){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Lo sentimos no cuenta con los fondos suficientes',
+            
+          })
+           if (dato.saldo<=0){
+              transferir();
+          }
+    }
+   
 
         if (inputMonto == null || inputMonto== NaN || inputMonto==" ") {
             Swal.fire({
@@ -144,18 +165,11 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
                 
               })
          
-         }
+         
         
-    
-         else if (localStorage.getItem('saldo')<0);{     
 
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Ingrese un numero!',
-                
-              })
-    }
+        }
+        
     }
     function transferir (e){
       
@@ -164,7 +178,7 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
        localStorage.getItem('saldo')
 
         localStorage.setItem("saldo", dato.saldo= restar(dato.saldo ,inputMonto.value));
-       
+        
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -177,6 +191,8 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
             
     
     }
+   
+
 
     });
     
@@ -185,6 +201,7 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
 function restar(a,b){
     let x = a-b
    return x
+
 }
     bannerTransferencias.addEventListener('click',menuTransferencia);
     bannerSaldo.addEventListener('click',consultaSaldo);
