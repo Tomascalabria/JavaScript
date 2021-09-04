@@ -50,7 +50,7 @@ header {
 /* Main */
 main {
   margin: 0;
-  height: 89vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr; }
@@ -301,9 +301,12 @@ select#form_motivo {
   outline: none; }
 
 .contenedor-operaciones {
-  height: 50vh; }
+  height: auto; }
 
 .contenedor-transferencia {
+  height: 50vh; }
+
+.contenedor-deposito {
   height: 50vh; }
 
 .container {

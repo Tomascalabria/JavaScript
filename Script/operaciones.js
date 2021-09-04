@@ -203,6 +203,67 @@ function restar(a,b){
    return x
 
 }
+function menuDepositos(){  // borrar el banner de opciones y generar el formulario
+    usuarios.forEach((dato)=>{
+    contenedorBanners.remove()
+    titloH2.remove()
+    let h2Deposito= document.createElement('h2')
+    h2Deposito.setAttribute('class','title')
+    h2Deposito.textContent='Realizar Deposito'
+    document.querySelector('header').appendChild(h2Deposito)
+
+    let contenedorOperacionDeposito =document.createElement('div')
+    contenedorOperacionDeposito.setAttribute('class','contenedor-deposito')
+    contenedorOperaciones.appendChild(contenedorOperacionDeposito)
+    // contenedor del formulario transferencias
+    let formContainer = document.createElement('div')
+    formContainer.setAttribute('class','container')
+    contenedorOperacionDeposito.appendChild(formContainer)
+    // formContainer.addEventListener('submit',depositar)
+     
+    let h2Formulario =document.createElement('h2')
+    h2Formulario.setAttribute('class','form-h2')
+    formContainer.appendChild(h2Formulario)
+
+    let aFormulario =document.createElement('a')
+    aFormulario.textContent="Depositos"
+    aFormulario.setAttribute('class','a-formulario')
+    h2Formulario.appendChild(aFormulario)
+
+    let divFormulario = document.createElement('form')
+    divFormulario.setAttribute('class','form')
+    formContainer.appendChild(divFormulario)
+
+// Palabra clave para realizar la diferencia
+    let inputUsuario = document.createElement('input')
+    inputUsuario.setAttribute('type','text')
+    inputUsuario.setAttribute('class','input')
+    inputUsuario.setAttribute('placeholder','Palabra Clave')
+    divFormulario.appendChild(inputUsuario)
+
+    let inputMonto=document.createElement('input')
+    inputMonto.setAttribute('type','number')
+    inputMonto.setAttribute('class','input input-monto')
+
+    inputMonto.setAttribute('placeholder','Monto a depositar' )
+    divFormulario.appendChild(inputMonto)
+
+    let divOpciones =document.createElement('div')
+    divOpciones.setAttribute('class','form-group')
+    divFormulario.appendChild(divOpciones)
+
+
+
+    let inputSubmit =document.createElement('input')
+    inputSubmit.setAttribute('type','submit')
+    inputSubmit.setAttribute('value','depositar' )
+    divFormulario.appendChild(inputSubmit)
+
+
+    });
+
+}   
+    bannerDepositos.addEventListener('click',menuDepositos)
     bannerTransferencias.addEventListener('click',menuTransferencia);
     bannerSaldo.addEventListener('click',consultaSaldo);
 

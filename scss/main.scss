@@ -1,10 +1,11 @@
 main {
     margin: 0;
-    height: 89vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
   }
+  
   .background {
       .link{
           text-decoration: none;
@@ -360,9 +361,9 @@ a.link-two.link:hover {
   
 
 
-.contenedor-operaciones {
-    height: 50vh;
- 
+
+  .contenedor-operaciones{
+    height: auto;
   }
   
 .contenedor-transferencia{
@@ -370,7 +371,9 @@ a.link-two.link:hover {
   
   
 }
-
+.contenedor-deposito{
+  height: 50vh;
+}
 
 .container{
   height: 50vh;
