@@ -147,7 +147,7 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
          }
         
     
-         else if (localStorage.getItem('saldo')<=0);{     
+         else if (localStorage.getItem('saldo')<0);{     
 
             Swal.fire({
                 icon: 'error',
