@@ -250,27 +250,35 @@ a.link-two.link:hover {
   }
   
   .contenedor-saldo{
-      justify-content: center;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-  }
-  .operacion-saldo-1{
-    color:white;
-    background-color: red;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+  .operacion-saldo-1 {
+    color: white;
+    background-color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
-    width: 50%;
-
+    width: 75%;
+    font-weight: 800;
   } 
-  .operacion-saldo-2{
-    color:white;
-    background-color: red;
+  
+
+  .operacion-saldo-2 {
+    color: #0d3cf7;
+    background-color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
-    width: 50%;
-  }
+    width: 80%;
+    display: inline;
+    font-weight: 800;
+}
 
+p.operacion-saldo-2 {
+    margin-left: 1rem;
+}
   /* formulario */
  
   .container {

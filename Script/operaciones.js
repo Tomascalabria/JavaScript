@@ -6,8 +6,9 @@ function Usuario (id,nombre,contraseña,saldo){
 }
 let usuarios = [] 
 
-usuarios.push(new Usuario(1,'pedro',65487841,78900))
-    
+usuarios.push(new Usuario(1,'pedro',65487841,0))
+
+
 let titloH2 = document.querySelector('.title')
 let bannerTransferencias = document.querySelector('.link-two')
 let bannerDepositos = document.querySelector('.link-three')
@@ -15,6 +16,8 @@ let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
 let saldo = localStorage.getItem('saldo')
+
+
 function consultaSaldo (e){
     usuarios.forEach((dato)=>{
     e.preventDefault();
@@ -33,16 +36,26 @@ function consultaSaldo (e){
 
     let operacionSaldo1=document.createElement('p')
     operacionSaldo1.setAttribute('class','operacion-saldo-1')
-    operacionSaldo1.textContent="Su saldo es:"
+    operacionSaldo1.textContent="Su saldo es:   $"
     contenedorOperacionSaldo.appendChild(operacionSaldo1)
+    if (saldo<0){
+        operacionSaldo1.textContent=" "
+        operacionSaldo1.style.background="white"
+        
+        
+    }
 
     let operacionSaldo2=document.createElement('p')
     operacionSaldo2.setAttribute('class','operacion-saldo-2')
     if (saldo<0){
-        operacionSaldo2.textContent= 'Error, no tiene fondos en su cuentas'
+        operacionSaldo2.textContent= 'Error. No tiene fondos en su cuentas'
+        operacionSaldo2.style.color = 'red';
+        operacionSaldo2.style.background="white"
+
     }
     else if (saldo>=0){
     operacionSaldo2.textContent=  ( `${localStorage.getItem("saldo")} Pesos`);
+    
     }
     // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
     operacionSaldo1.appendChild(operacionSaldo2)
@@ -164,20 +177,18 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
                 text: 'El monto a transferir esta en blanco!',
                 
               })
-         
-         
-        
 
         }
         
     }
+   
     function transferir (e){
       
         e.preventDefault()
 
-       localStorage.getItem('saldo')
+        saldo;
 
-        localStorage.setItem("saldo", dato.saldo= restar(dato.saldo ,inputMonto.value));
+        localStorage.setItem("saldo", dato.saldo= restar(saldo ,inputDeposito.value));
         
             Swal.fire({
                 position: 'center',
@@ -188,20 +199,19 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
                 showConfirmButton: false,
                 timer: 6000
               })
-            
-    
     }
-   
-
-
     });
     
 }
 
 function restar(a,b){
     let x = a-b
-   return x
+   return (x)
 
+}
+function sumar (a,b){
+    let x =  parseFloat(a)+parseFloat(b)
+    return parseFloat(x)
 }
 function menuDepositos(){  // borrar el banner de opciones y generar el formulario
     usuarios.forEach((dato)=>{
@@ -219,7 +229,7 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     let formContainer = document.createElement('div')
     formContainer.setAttribute('class','container')
     contenedorOperacionDeposito.appendChild(formContainer)
-    // formContainer.addEventListener('submit',depositar)
+    formContainer.addEventListener('submit',depositar)
      
     let h2Formulario =document.createElement('h2')
     h2Formulario.setAttribute('class','form-h2')
@@ -241,12 +251,12 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     inputUsuario.setAttribute('placeholder','Palabra Clave')
     divFormulario.appendChild(inputUsuario)
 
-    let inputMonto=document.createElement('input')
-    inputMonto.setAttribute('type','number')
-    inputMonto.setAttribute('class','input input-monto')
+    let inputDeposito=document.createElement('input')
+    inputDeposito.setAttribute('type','number')
+    inputDeposito.setAttribute('class','input input-monto')
 
-    inputMonto.setAttribute('placeholder','Monto a depositar' )
-    divFormulario.appendChild(inputMonto)
+    inputDeposito.setAttribute('placeholder','Monto a depositar' )
+    divFormulario.appendChild(inputDeposito)
 
     let divOpciones =document.createElement('div')
     divOpciones.setAttribute('class','form-group')
@@ -260,6 +270,26 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     divFormulario.appendChild(inputSubmit)
 
 
+    function depositar (e){
+        e.preventDefault()
+
+        saldo;
+
+         localStorage.setItem("saldo", dato.saldo= sumar(saldo ,inputDeposito.value));
+         
+         Swal.fire({
+            position: 'center',
+            icon: 'success',
+            width: 600,
+            height: 600,
+            title: (`Gracias ${usuarios.nombre} ha depositado ${inputDeposito.value}, su saldo es ${(localStorage.getItem('saldo')) }`),
+            showConfirmButton: false,
+            timer: 6000
+          })
+
+    }
+    
+
     });
 
 }   
@@ -267,4 +297,5 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     bannerTransferencias.addEventListener('click',menuTransferencia);
     bannerSaldo.addEventListener('click',consultaSaldo);
 
+    
     

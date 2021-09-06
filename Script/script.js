@@ -20,7 +20,7 @@ let userPassword = document.querySelector('.login-password').value
  
 
 
-usuarios.push(new Usuario(1,userName,userPassword,50000))
+usuarios.push(new Usuario(1,userName,userPassword,0))
 window.localStorage.setItem('usuario',JSON.stringify(usuarios))
 
 
