@@ -7,6 +7,24 @@ function Usuario (id,nombre,contraseña,saldo){
     this.saldo=parseFloat(saldo)
 }
 
+let darkMode = $('.screen__mode-dark')
+let lightMode=$('.screen__mode-light')
+let body=$('body')
+
+darkMode.on('click',dark)
+lightMode.on('click',light )
+
+function dark(){
+
+    body.removeClass()
+}
+function light (e){
+    e.preventDefault();
+    
+    body.attr('class','body')
+    
+}
+
 
 let usuarios = []
 

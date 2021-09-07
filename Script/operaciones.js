@@ -16,6 +16,8 @@ let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
 let saldo = localStorage.getItem('saldo')
+let
+
 
 
 function consultaSaldo (e){
