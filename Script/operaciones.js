@@ -3,11 +3,11 @@ function Usuario (id,nombre,contraseña,numCuenta,saldo){
     this.nombre=nombre;
     this.contraseña=contraseña;
     this.numCuenta= parseInt(numCuenta)
-    this.saldo=parseFloat( saldo)
+    this.saldo= parseFloat(saldo)
 }
 let usuarios = [] 
 
-usuarios.push(new Usuario(1,'pedro','PedroCapo123',65487841,localStorage.getItem('saldo')))
+usuarios.push(new Usuario(1,'pedro','PedroCapo123',65487841,0))
 
 
 let titloH2 = document.querySelector('.title')
@@ -17,6 +17,7 @@ let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
 let saldo = localStorage.getItem('saldo')
+console.log(saldo)
 let btnAtras=document.querySelector('.boton-atras')
 
 function consultaSaldo (e){
@@ -205,16 +206,15 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
       
         e.preventDefault()
 
-        localStorage.getItem('saldo')
-
-        localStorage.setItem('saldo', dato.saldo= restar(dato.saldo ,inputMonto.value));
+        saldo
+        localStorage.setItem('saldo', restar(saldo,inputMonto.value));
         
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 width: 600,
                 height: 600,
-                title: (`Gracias ${usuarios.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${dato.saldo}PESOS`),
+                title: (`Gracias ${dato.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${localStorage.getItem('saldo')}PESOS`),
                 showConfirmButton: false,
                 timer: 6000
               })
@@ -296,9 +296,9 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     function depositar (e){
         e.preventDefault()
 
-        saldo;
+        saldo
 
-         localStorage.setItem("saldo", dato.saldo= sumar(saldo ,inputDeposito.value));
+         localStorage.setItem("saldo",  sumar(saldo ,inputDeposito.value));
          
          Swal.fire({
             position: 'center',
