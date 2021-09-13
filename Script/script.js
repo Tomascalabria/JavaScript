@@ -10,6 +10,9 @@ function Usuario (id,nombre,contraseña,saldo){
 let darkMode = $('.screen__mode-dark')
 let lightMode=$('.screen__mode-light')
 let body=$('body')
+let contenedorform = $('.contenedor-form')
+let box = $('.box')
+box.hide()
 
 darkMode.on('click',dark)
 lightMode.on('click',light )
@@ -24,17 +27,34 @@ function light (e){
     body.attr('class','body')
     
 }
+setTimeout(() => {
+    contenedorform.css('display','none')
+    box.fadeIn('slow');
+    
+    
+         
+    setTimeout(() => {
+        
+        contenedorform.css('display','block')
+        box.hide('slow')
+    
+    
+    },5000 );
+
+
+}, 2000);
+
 
 
 let usuarios = []
 
-let div2 = document.querySelector('div-2y')
-let formulario=document.querySelector('.login-form');
- formulario.addEventListener('submit',validarformulario)
+
+let formulario=$('.login-form');
+ formulario.on
 function validarformulario(e){
     e.preventDefault()
-let userName = document.querySelector('.login-username').value
-let userPassword = document.querySelector('.login-password').value
+let userName = $('.login-username').value
+let userPassword = $('.login-password').value
  
 
 

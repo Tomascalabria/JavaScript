@@ -248,7 +248,12 @@ a.link-two.link:hover {
   .link-three:hover::before {
     transform: translate(0%, 0%) scaleY(1);
   }
-  
+
+  // Dolares
+
+
+
+  // Apartir del Js
   .contenedor-saldo{
     justify-content: center;
     display: flex;
@@ -385,4 +390,20 @@ p.operacion-saldo-2 {
 
 .container{
   height: 50vh;
+}
+
+footer{
+  height: 200px;
+  margin-top: 5rem;
+}
+.btn-atras{
+  width: 90px;
+  height: 40px;
+  background-color: rgba(0, 90, 35, 0.788);
+  color: white;
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+  font-size: 1.8rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -319,6 +319,21 @@ select#form_motivo {
 .container {
   height: 50vh; }
 
+footer {
+  height: 200px;
+  margin-top: 5rem; }
+
+.btn-atras {
+  width: 90px;
+  height: 40px;
+  background-color: rgba(0, 90, 35, 0.788);
+  color: white;
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+  font-size: 1.8rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; }
+
 /* index */
 .header {
   text-align: center;
@@ -617,3 +632,33 @@ a {
 .underlay-black {
   background: rgba(0, 0, 0, 0.7);
   z-index: -1; }
+
+.none {
+  display: none; }
+
+.box {
+  margin: 2rem 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center; }
+  .box h4 {
+    color: violet;
+    font-size: 2.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 2rem; }
+  .box a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center; }
+    .box a img {
+      width: 80%; }
+    .box a button {
+      color: darkmagenta;
+      background-color: transparent;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bolder;
+      border-color: transparent; }

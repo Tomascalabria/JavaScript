@@ -1,12 +1,13 @@
-function Usuario (id,nombre,contraseña,saldo){
+function Usuario (id,nombre,contraseña,numCuenta,saldo){
     this.id=parseInt(id);
     this.nombre=nombre;
     this.contraseña=contraseña;
-    this.saldo=parseFloat(saldo)
+    this.numCuenta= parseInt(numCuenta)
+    this.saldo=parseFloat( saldo)
 }
 let usuarios = [] 
 
-usuarios.push(new Usuario(1,'pedro',65487841,0))
+usuarios.push(new Usuario(1,'pedro','PedroCapo123',65487841,localStorage.getItem('saldo')))
 
 
 let titloH2 = document.querySelector('.title')
@@ -16,9 +17,7 @@ let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
 let saldo = localStorage.getItem('saldo')
-let
-
-
+let btnAtras=document.querySelector('.boton-atras')
 
 function consultaSaldo (e){
     usuarios.forEach((dato)=>{
@@ -38,11 +37,15 @@ function consultaSaldo (e){
 
     let operacionSaldo1=document.createElement('p')
     operacionSaldo1.setAttribute('class','operacion-saldo-1')
-    operacionSaldo1.textContent="Su saldo es:   $"
+    operacionSaldo1.textContent=`Cuenta N° ${dato.numCuenta} saldo es:   $`
+
+    
     contenedorOperacionSaldo.appendChild(operacionSaldo1)
     if (saldo<0){
         operacionSaldo1.textContent=" "
         operacionSaldo1.style.background="white"
+  
+        
         
         
     }
@@ -53,6 +56,7 @@ function consultaSaldo (e){
         operacionSaldo2.textContent= 'Error. No tiene fondos en su cuentas'
         operacionSaldo2.style.color = 'red';
         operacionSaldo2.style.background="white"
+    
 
     }
     else if (saldo>=0){
@@ -62,9 +66,22 @@ function consultaSaldo (e){
     // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
     operacionSaldo1.appendChild(operacionSaldo2)
     
-    
+
+
+
+
 
     });
+
+   
+    function irAtras(e){
+        document.location.reload()
+        }
+        
+        btnAtras.addEventListener('click',irAtras)
+        
+
+   
     }
 function menuTransferencia(){  // borrar el banner de opciones y generar el formulario
     usuarios.forEach((dato)=>{
@@ -188,22 +205,26 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
       
         e.preventDefault()
 
-        saldo;
+        localStorage.getItem('saldo')
 
-        localStorage.setItem("saldo", dato.saldo= restar(saldo ,inputDeposito.value));
+        localStorage.setItem('saldo', dato.saldo= restar(dato.saldo ,inputMonto.value));
         
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 width: 600,
                 height: 600,
-                title: (`Gracias ${usuarios.nombre} ha transferido ${inputMonto.value}, su saldo restante es ${dato.saldo}`),
+                title: (`Gracias ${usuarios.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${dato.saldo}PESOS`),
                 showConfirmButton: false,
                 timer: 6000
               })
     }
     });
-    
+    function irAtras(e){
+        document.location.reload()
+        }
+        
+        btnAtras.addEventListener('click',irAtras)
 }
 
 function restar(a,b){
@@ -293,11 +314,22 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     
 
     });
-
+    function irAtras(e){
+        document.location.reload()
+        }
+        
+        btnAtras.addEventListener('click',irAtras)
 }   
+      
+function irAtras(e){
+    history.back()
+    }  
+
+
+    
+    btnAtras.addEventListener('click',irAtras)
+
     bannerDepositos.addEventListener('click',menuDepositos)
     bannerTransferencias.addEventListener('click',menuTransferencia);
     bannerSaldo.addEventListener('click',consultaSaldo);
-
-    
-    
+ 
