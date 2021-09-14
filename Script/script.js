@@ -1,11 +1,12 @@
-
-
-function Usuario (id,nombre,contraseña,saldo){
+function Usuario (id,nombre,contraseña,numCuenta,saldo){
     this.id=parseInt(id);
     this.nombre=nombre;
     this.contraseña=contraseña;
-    this.saldo=parseFloat(saldo)
+    this.numCuenta= parseInt(numCuenta)
+    this.saldo= parseFloat(saldo)
 }
+let usuarios = []
+
 
 let darkMode = $('.screen__mode-dark')
 let lightMode=$('.screen__mode-light')
@@ -27,41 +28,31 @@ function light (e){
     body.attr('class','body')
     
 }
-setTimeout(() => {
-    contenedorform.css('display','none')
-    box.fadeIn('slow');
+// setTimeout(() => {
+//     contenedorform.css('display','none')
+//     box.fadeIn('slow');
     
     
          
-    setTimeout(() => {
+//     setTimeout(() => {
         
-        contenedorform.css('display','block')
-        box.hide('slow')
+//         contenedorform.css('display','block')
+//         box.hide('slow')
     
     
-    },5000 );
+//     },5000 );
 
 
-}, 2000);
+// }, 2000);
 
 
 
-let usuarios = []
 
 
 let formulario=$('.login-form');
- formulario.on
+ formulario.on('submit',validarformulario)
 function validarformulario(e){
     e.preventDefault()
-let userName = $('.login-username').value
-let userPassword = $('.login-password').value
- 
-
-
-usuarios.push(new Usuario(1,userName,userPassword,0))
-window.localStorage.setItem('usuario',JSON.stringify(usuarios))
-
-
 
 var datos = localStorage.getItem('usuarios')
 
@@ -69,5 +60,30 @@ console.log(datos)
 console.log(usuarios);
 
 
+var userName = $('.login-username').value
+var userPassword = $('.login-password').value
 
+
+const URLGET = "script/data.json"
+
+$.get(URLGET, function (respuesta, estado) {
+
+
+    console.log(respuesta)
+    console.log(estado)
+    if(estado=="success"){
+        let datos = respuesta;
+        console.log(datos)
+        for (const data of datos){
+       
+
+         
+        }
+    }
+
+
+ 
+   
+
+})
 }

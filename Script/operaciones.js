@@ -5,10 +5,11 @@ function Usuario (id,nombre,contraseña,numCuenta,saldo){
     this.numCuenta= parseInt(numCuenta)
     this.saldo= parseFloat(saldo)
 }
-let usuarios = [] 
+let usuarios = []
 
 usuarios.push(new Usuario(1,'pedro','PedroCapo123',65487841,0))
-
+localStorage.setItem('usuario',usuarios)
+localStorage.setItem('saldo',(usuarios.map(dato=>dato.saldo)))
 
 let titloH2 = document.querySelector('.title')
 let bannerTransferencias = document.querySelector('.link-two')
@@ -177,18 +178,17 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
 
     function validarTransferencia(e){
         e.preventDefault();
-        while (dato.saldo<0){
+        while (saldo<0){
             Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Lo sentimos no cuenta con los fondos suficientes',
             
           })
-           if (dato.saldo<=0){
+           if (saldo<=0){
               transferir();
           }
-    }
-   
+       
 
         if (inputMonto == null || inputMonto== NaN || inputMonto==" ") {
             Swal.fire({
@@ -201,13 +201,15 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
         }
         
     }
-   
+}
     function transferir (e){
       
         e.preventDefault()
 
         saldo
-        localStorage.setItem('saldo', restar(saldo,inputMonto.value));
+        
+      let setearSaldo=  localStorage.setItem('saldo', restar(saldo,inputMonto.value));
+      setearSaldo;
         
             Swal.fire({
                 position: 'center',
@@ -298,7 +300,8 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
 
         saldo
 
-         localStorage.setItem("saldo",  sumar(saldo ,inputDeposito.value));
+        let setearSaldo=  localStorage.setItem("saldo",  sumar(saldo ,inputDeposito.value));
+        setearSaldo;
          
          Swal.fire({
             position: 'center',

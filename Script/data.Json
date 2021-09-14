@@ -1,0 +1,12 @@
+[
+   {  "id": "1","nombre":"Pedro","contraseña":"PedroCapo123","numCuenta":"65487838","saldo":"0"},
+   {  "id": "2","nombre":"Juan","contraseña":"JuanCapo123","numCuenta":"65487839","saldo":"2000"},
+   {  "id": "3","nombre":"Carlos","contraseña":"Carlos777","numCuenta":"65487840","saldo":"0"},
+   {  "id": "4","nombre":"Guillermo","contraseña":"Guillermo888","numCuenta":"65487841","saldo":"0"},
+   {  "id": "5","nombre":"Luis","contraseña":"Luis7777","numCuenta":"65487842","saldo":"5000"},
+   {  "id": "6","nombre":"Fernando","contraseña":"Fernando879","numCuenta":"65487843","saldo":"120"},
+   {  "id": "7","nombre":"Lucia","contraseña":"Lucia2711","numCuenta":"65487844","saldo":"66"},
+   {  "id": "8","nombre":"Julia","contraseña":"Julia864","numCuenta":"65487845","saldo":"12000"},
+   {  "id": "9","nombre":"Ana","contraseña":"Ana4444","numCuenta":"65487846","saldo":"8999"}
+
+]
