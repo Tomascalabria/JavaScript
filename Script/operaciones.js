@@ -303,9 +303,10 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
             showConfirmButton: false,
             timer: 6000
           })
-          nuevoSaldo = usuarioActual.find((x)=>x.saldo)
+          saldo = nuevoSaldo
           
           
+         
     }
     
 
