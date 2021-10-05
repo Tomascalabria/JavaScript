@@ -26,6 +26,7 @@ console.log(saldo)
 
 
 
+
 function consultaSaldo (e){
     
     e.preventDefault();
@@ -186,15 +187,15 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
 
         saldo
         
-      let setearSaldo=  localStorage.setItem('saldo', restar(saldo,inputMonto.value));
-      setearSaldo;
+      let saldo= saldo-=(inputMonto.value)
+      saldo;
         
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 width: 600,
                 height: 600,
-                title: (`Gracias ${usuarioActual.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${localStorage.getItem('saldo')}PESOS`),
+                title: (`Gracias ${usuarioActual.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${saldo}PESOS`),
                 showConfirmButton: false,
                 timer: 6000
               })
@@ -227,22 +228,14 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
         
     }
 }
-    function irAtras(e){
+    function irAtras(){
         document.location.reload()
         }
         
         btnAtras.addEventListener('click',irAtras)
 }
 
-function restar(a,b){
-    let x = a-b
-   return (x)
 
-}
-function sumar (a,b){
-    let x =  parseFloat(a)+parseFloat(b)
-    return parseFloat(x)
-}
 function menuDepositos(){  // borrar el banner de opciones y generar el formulario
   
     contenedorBanners.remove()
@@ -304,9 +297,9 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
         e.preventDefault()
 
         saldo
-
-        let setearSaldo=  sessionStorage.setItem("saldo",  sumar(saldo ,inputDeposito.value));
-        setearSaldo;
+        let saldo= saldo+=(inputMonto.value)
+        saldo;
+          
          
          Swal.fire({
             position: 'center',
@@ -330,7 +323,7 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
 }   
       
 function irAtras(e){
-    window.location("../index.html")
+    window.location("./index.html")
     }  
 
 
