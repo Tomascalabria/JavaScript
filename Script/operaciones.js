@@ -1,10 +1,4 @@
-function Usuario (id,nombre,contraseña,numCuenta,saldo){
-    this.id=parseInt(id);
-    this.nombre=nombre;
-    this.contraseña=contraseña;
-    this.numCuenta= parseInt(numCuenta)
-    this.saldo= parseFloat(saldo)
-}
+
 
 let usuarios = []
 usuarios= JSON.parse( localStorage.getItem('usuarios'))
@@ -21,7 +15,7 @@ let btnAtras=document.querySelector('.boton-atras')
 
 let usuarioActual = JSON.parse(sessionStorage.getItem("usuarioActual"))
 console.log(usuarioActual)
-let saldo = usuarioActual.saldo
+let saldo = (usuarioActual.saldo)
 console.log(saldo)
 
 
@@ -291,37 +285,46 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     inputSubmit.setAttribute('type','submit')
     inputSubmit.setAttribute('value','depositar' )
     divFormulario.appendChild(inputSubmit)
-
+  
+    
 
     function depositar (e){
         e.preventDefault()
 
-        saldo
-        let saldo= saldo+=(inputMonto.value)
-        saldo;
-          
-         
+        
+        
+        let nuevoSaldo= parseFloat( saldo)+parseFloat(inputDeposito.value)
          Swal.fire({
             position: 'center',
             icon: 'success',
             width: 600,
             height: 600,
-            title: (`Gracias ${usuarioActual.nombre} ha depositado ${inputDeposito.value}, su saldo es ${saldo }`),
+            title: (`Gracias ${usuarioActual.nombre} ha depositado ${inputDeposito.value}, su saldo es ${nuevoSaldo }`),
             showConfirmButton: false,
             timer: 6000
           })
-
+          nuevoSaldo = usuarioActual.find((x)=>x.saldo)
+          
+          
     }
     
 
     
     function irAtras(e){
         document.location.reload()
+        bannerDepositos
+        bannerTransferencias
+        bannerSaldo
         }
         
         btnAtras.addEventListener('click',irAtras)
 }   
       
+function sumar (a,b){
+    x = parseInt(a)+ parseInt(b)
+    return x
+    
+}
 function irAtras(e){
     window.location("./index.html")
     }  
@@ -334,3 +337,4 @@ function irAtras(e){
     bannerTransferencias.addEventListener('click',menuTransferencia);
     bannerSaldo.addEventListener('click',consultaSaldo);
  
+    

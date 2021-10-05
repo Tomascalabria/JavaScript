@@ -73,21 +73,21 @@ formulario.on('submit',validarformulario)
 function validarformulario(e){
     e.preventDefault();
 
-let getUsuarios= JSON.parse( localStorage.getItem("usuarios"))
+let getUsuarios= JSON.parse(localStorage.getItem("usuarios"))
 let usuarioActual = getUsuarios.find(x=>x.nombre==usuario.val())
 sessionStorage.setItem('usuarioActual',JSON.stringify(usuarioActual))
 let contraseñaActual= getUsuarios.find(x=>x.contraseña==contraseña.val())
 
 console.log(usuarioActual)
 console.log(usuario.val())
-if((usuario.val())== usuarioActual.nombre && contraseña.val()== contraseñaActual.contraseña ){
+if(usuario.val()== usuarioActual.nombre && contraseña.val()== contraseñaActual.contraseña){
     
     Swal.fire({
         position: 'center',
         icon: 'success',
         width: 600,
         height: 600,
-        title: (`Bienvenido ${usuarioActual.nombre} `),
+        title: (`Bienvenido ${usuarioActual} `),
         showConfirmButton: false,
         timer: 80000
       })
