@@ -5,11 +5,9 @@ function Usuario (id,nombre,contraseña,numCuenta,saldo){
     this.numCuenta= parseInt(numCuenta)
     this.saldo= parseFloat(saldo)
 }
-let usuarios = []
 
-usuarios.push(new Usuario(1,'pedro','PedroCapo123',65487841,0))
-localStorage.setItem('usuario',usuarios)
-localStorage.setItem('saldo',(usuarios.map(dato=>dato.saldo)))
+let usuarios = []
+usuarios= JSON.parse( localStorage.getItem('usuarios'))
 
 let titloH2 = document.querySelector('.title')
 let bannerTransferencias = document.querySelector('.link-two')
@@ -17,12 +15,19 @@ let bannerDepositos = document.querySelector('.link-three')
 let bannerSaldo = document.querySelector('.link-one ')
 let contenedorBanners = document.querySelector('.contenedor')
 let contenedorOperaciones =document.querySelector('.contenedor-operaciones')
-let saldo = localStorage.getItem('saldo')
-console.log(saldo)
+
+
 let btnAtras=document.querySelector('.boton-atras')
 
+let usuarioActual = JSON.parse(sessionStorage.getItem("usuarioActual"))
+console.log(usuarioActual)
+let saldo = usuarioActual.saldo
+console.log(saldo)
+
+
+
 function consultaSaldo (e){
-    usuarios.forEach((dato)=>{
+    
     e.preventDefault();
     
     contenedorBanners.remove()
@@ -39,7 +44,7 @@ function consultaSaldo (e){
 
     let operacionSaldo1=document.createElement('p')
     operacionSaldo1.setAttribute('class','operacion-saldo-1')
-    operacionSaldo1.textContent=`Cuenta N° ${dato.numCuenta} saldo es:   $`
+    operacionSaldo1.textContent=`Cuenta N° ${usuarioActual.numCuenta} saldo es:   `
 
     
     contenedorOperacionSaldo.appendChild(operacionSaldo1)
@@ -49,9 +54,8 @@ function consultaSaldo (e){
   
         
         
-        
     }
-
+    
     let operacionSaldo2=document.createElement('p')
     operacionSaldo2.setAttribute('class','operacion-saldo-2')
     if (saldo<0){
@@ -62,7 +66,7 @@ function consultaSaldo (e){
 
     }
     else if (saldo>=0){
-    operacionSaldo2.textContent=  ( `${localStorage.getItem("saldo")} Pesos`);
+    operacionSaldo2.textContent=  ( `$${saldo} Pesos  `);
     
     }
     // operacionSaldo2.textContent=`${window.localStorage.getItem.toString(usuarios.id)} PESOS` la idea seria obtener el dinero desde LocalStorage
@@ -73,7 +77,7 @@ function consultaSaldo (e){
 
 
 
-    });
+ 
 
    
     function irAtras(e){
@@ -86,7 +90,7 @@ function consultaSaldo (e){
    
     }
 function menuTransferencia(){  // borrar el banner de opciones y generar el formulario
-    usuarios.forEach((dato)=>{
+    
     contenedorBanners.remove()
     titloH2.remove()
     let h2Transferencia= document.createElement('h2')
@@ -176,32 +180,6 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
     divFormulario.appendChild(inputSubmit)
 
 
-    function validarTransferencia(e){
-        e.preventDefault();
-        while (saldo<0){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Lo sentimos no cuenta con los fondos suficientes',
-            
-          })
-           if (saldo<=0){
-              transferir();
-          }
-       
-
-        if (inputMonto == null || inputMonto== NaN || inputMonto==" ") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'El monto a transferir esta en blanco!',
-                
-              })
-
-        }
-        
-    }
-}
     function transferir (e){
       
         e.preventDefault()
@@ -216,12 +194,39 @@ function menuTransferencia(){  // borrar el banner de opciones y generar el form
                 icon: 'success',
                 width: 600,
                 height: 600,
-                title: (`Gracias ${dato.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${localStorage.getItem('saldo')}PESOS`),
+                title: (`Gracias ${usuarioActual.nombre} ha transferido $ ${inputMonto.value}PESOS, su saldo restante es $${localStorage.getItem('saldo')}PESOS`),
                 showConfirmButton: false,
                 timer: 6000
               })
     }
-    });
+    
+    
+    function validarTransferencia(e){
+        e.preventDefault();
+        if (localStorage<0){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Lo sentimos no cuenta con los fondos suficientes',
+            
+          })
+           if (saldo<=0){
+              transferir();
+          }
+       
+
+        else (inputMonto == null || inputMonto== NaN || inputMonto==" "); {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El monto a transferir esta en blanco!',
+                
+              })
+
+        }
+        
+    }
+}
     function irAtras(e){
         document.location.reload()
         }
@@ -239,7 +244,7 @@ function sumar (a,b){
     return parseFloat(x)
 }
 function menuDepositos(){  // borrar el banner de opciones y generar el formulario
-    usuarios.forEach((dato)=>{
+  
     contenedorBanners.remove()
     titloH2.remove()
     let h2Deposito= document.createElement('h2')
@@ -300,7 +305,7 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
 
         saldo
 
-        let setearSaldo=  localStorage.setItem("saldo",  sumar(saldo ,inputDeposito.value));
+        let setearSaldo=  sessionStorage.setItem("saldo",  sumar(saldo ,inputDeposito.value));
         setearSaldo;
          
          Swal.fire({
@@ -308,7 +313,7 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
             icon: 'success',
             width: 600,
             height: 600,
-            title: (`Gracias ${usuarios.nombre} ha depositado ${inputDeposito.value}, su saldo es ${(localStorage.getItem('saldo')) }`),
+            title: (`Gracias ${usuarioActual.nombre} ha depositado ${inputDeposito.value}, su saldo es ${saldo }`),
             showConfirmButton: false,
             timer: 6000
           })
@@ -316,7 +321,7 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
     }
     
 
-    });
+    
     function irAtras(e){
         document.location.reload()
         }
@@ -325,7 +330,7 @@ function menuDepositos(){  // borrar el banner de opciones y generar el formular
 }   
       
 function irAtras(e){
-    history.back()
+    window.location("../index.html")
     }  
 
 
